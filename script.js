@@ -117,6 +117,11 @@ function renderProductosUI() {
   renderDestacados();
   renderCatalogo();
   renderDetalle();
+
+  // Re-observe fade elements after rendering
+  setTimeout(() => {
+    document.querySelectorAll(".fade").forEach((el) => observer.observe(el));
+  }, 100);
 }
 
 // Initialize data on load
@@ -133,4 +138,5 @@ const observer = new IntersectionObserver(entries => {
   });
 });
 
+// Initial observation of existing fade elements
 document.querySelectorAll(".fade").forEach(el => observer.observe(el));
