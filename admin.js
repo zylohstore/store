@@ -57,17 +57,26 @@ async function login() {
   btnEntrar.textContent = "Entrando...";
 
   try {
+    console.log("Intentando login con:", email);
     await loginAdmin(email, password);
+    console.log("Login exitoso");
     // Auth state change will handle UI
   } catch (err) {
-    console.error("Error de login:", err);
-    authErrorEl.textContent = `Error: ${
-      err.code === "auth/user-not-found"
-        ? "Usuario no encontrado"
-        : err.code === "auth/wrong-password"
-        ? "Contraseña incorrecta"
-        : err.message
-    }`;
+    console.error("Error de login - Code:", err.code, "Message:", err.message);
+    console.log("JSON del error:", JSON.stringify(err, null, 2));
+    
+    let msgError = err.message;
+    if (err.code === "auth/user-not-found") {
+      msgError = "Usuario no encontrado";
+    } else if (err.code === "auth/wrong-password") {
+      msgError = "Contraseña incorrecta";
+    } else if (err.code === "auth/invalid-email") {
+      msgError = "Email inválido";
+    } else if (err.code === "auth/too-many-requests") {
+      msgError = "Demasiados intentos fallidos. Intenta más tarde.";
+    }
+    
+    authErrorEl.textContent = `Error: ${msgError}`;
     authErrorEl.style.display = "block";
   } finally {
     btnEntrar.disabled = false;
