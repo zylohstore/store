@@ -6,10 +6,13 @@ let productos = [];
 
 async function initProductos() {
   try {
+    console.log("Cargando productos desde Firestore...");
     productos = await fetchProductos();
+    console.log("Productos cargados:", productos.length, productos);
     renderProductosUI();
   } catch (err) {
     console.error("Error cargando productos desde Firebase:", err);
+    console.log("Error completo:", JSON.stringify(err, null, 2));
     renderProductosUI(); // render empty gracefully
   }
 }
@@ -56,9 +59,9 @@ function renderDestacados() {
   const destacados = document.getElementById("destacados");
   if (!destacados) return;
   destacados.innerHTML = "";
-  productos
-    .filter(p => p.destacado)
-    .forEach(p => destacados.innerHTML += productoHTML(p));
+  const destacadosArr = productos.filter((p) => p.destacado);
+  console.log("Renderizando destacados:", destacadosArr.length);
+  destacadosArr.forEach((p) => (destacados.innerHTML += productoHTML(p)));
 }
 
 /* ===============================
@@ -68,7 +71,8 @@ function renderCatalogo() {
   const catalogo = document.getElementById("catalogo");
   if (!catalogo) return;
   catalogo.innerHTML = "";
-  productos.forEach(p => {
+  console.log("Renderizando catálogo:", productos.length, "productos");
+  productos.forEach((p) => {
     catalogo.innerHTML += productoHTML(p);
   });
 }
