@@ -109,3 +109,9 @@ async function eliminar(id) {
     await loadProductos();
   }
 }
+
+// Expose functions for inline onclick handlers (module scope is not global)
+window.login = login;
+window.editar = editar;
+window.eliminar = eliminar;
+window.cancelarEdicion = cancelarEdicion;

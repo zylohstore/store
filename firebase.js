@@ -11,14 +11,15 @@ import {
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-};
+ const firebaseConfig = {
+   apiKey: "AIzaSyDZ9NpyKG_79nTtToCQj75bXnP5JMj4ZGI",
+   authDomain: "zyloh-store.firebaseapp.com",
+   projectId: "zyloh-store",
+   storageBucket: "zyloh-store.firebasestorage.app",
+   messagingSenderId: "533877217986",
+   appId: "1:533877217986:web:73272e3c0685d1cabbf95b",
+   measurementId: "G-DRQCHNS0XG",
+ };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
