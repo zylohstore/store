@@ -48,17 +48,45 @@ form.addEventListener("submit", async (e) => {
     imagenes: imagenesEl.value.split(",").map((i) => i.trim()),
   };
 
-  // Persist in Firestore
-  await upsertProducto(data);
-  await loadProductos();
-  cancelarEdicion();
+  // Persist in Firestore with UI feedback
+  const saveBtn = form.querySelector('button[type="submit"]');
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Guardando...";
+  }
+
+  try {
+    await upsertProducto(data);
+    await loadProductos();
+    cancelarEdicion();
+  } catch (err) {
+    console.error("Error al guardar en Firebase:", err);
+    alert(
+      "Error al guardar en Firebase: " +
+        (err && err.message ? err.message : err)
+    );
+  } finally {
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Guardar producto";
+    }
+  }
 });
 
 /* ===============================
    GUARDAR + RENDER
 ================================ */
 async function loadProductos() {
-  productos = await fetchProductos();
+  try {
+    productos = await fetchProductos();
+  } catch (err) {
+    console.error("Error cargando productos desde Firebase:", err);
+    alert(
+      "Error cargando productos desde Firebase: " +
+        (err && err.message ? err.message : err)
+    );
+    productos = [];
+  }
   renderProductos();
 }
 
