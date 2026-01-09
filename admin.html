@@ -9,11 +9,16 @@
 
 <div class="admin-login" id="login">
   <h1>Zyloh Admin</h1>
-  <input type="password" id="password" placeholder="Contraseña">
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Contraseña" required>
   <button id="btnEntrar">Entrar</button>
+  <p id="authError" style="color:red; display:none; font-size:0.9em; margin-top:10px;"></p>
 </div>
 
 <div class="admin-panel" id="panel" style="display:none">
+  <div style="text-align: right; margin-bottom: 20px;">
+    <button id="btnSalir" type="button" style="background: #999; padding: 8px 15px; border-radius: 20px; color: #fff; border: none; cursor: pointer;">Salir</button>
+  </div>
   <h1>Panel de administración</h1>
 
   <form id="formProducto">

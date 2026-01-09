@@ -1,8 +1,15 @@
-import { fetchProductos, upsertProducto, removeProducto } from "./firebase.js";
-
-const PASSWORD = "zyloh123"; // 🔐 CAMBIA ESTA CONTRASEÑA
+import {
+  fetchProductos,
+  upsertProducto,
+  removeProducto,
+  loginAdmin,
+  logoutAdmin,
+  onAuthChange,
+  auth,
+} from "./firebase.js";
 
 let productos = [];
+let currentUser = null;
 
 // Form elements
 const idProductoEl = document.getElementById("idProducto");
@@ -12,21 +19,77 @@ const descripcionEl = document.getElementById("descripcion");
 const imagenesEl = document.getElementById("imagenes");
 const destacadoEl = document.getElementById("destacado");
 const btnEntrar = document.getElementById("btnEntrar");
+const btnSalir = document.getElementById("btnSalir");
+const emailEl = document.getElementById("email");
+const passwordEl = document.getElementById("password");
+const authErrorEl = document.getElementById("authError");
 
-function login() {
-  const pass = document.getElementById("password").value;
-  if (pass === PASSWORD) {
+// Monitor auth state
+onAuthChange((user) => {
+  currentUser = user;
+  if (user) {
+    console.log("Usuario autenticado:", user.email);
     document.getElementById("login").style.display = "none";
     document.getElementById("panel").style.display = "block";
     loadProductos();
   } else {
-    alert("Contraseña incorrecta");
+    console.log("Usuario desautenticado");
+    document.getElementById("login").style.display = "block";
+    document.getElementById("panel").style.display = "none";
+    emailEl.value = "";
+    passwordEl.value = "";
+    authErrorEl.style.display = "none";
+    authErrorEl.textContent = "";
+  }
+});
+
+async function login() {
+  const email = emailEl.value.trim();
+  const password = passwordEl.value.trim();
+
+  if (!email || !password) {
+    authErrorEl.textContent = "Completa email y contraseña";
+    authErrorEl.style.display = "block";
+    return;
+  }
+
+  btnEntrar.disabled = true;
+  btnEntrar.textContent = "Entrando...";
+
+  try {
+    await loginAdmin(email, password);
+    // Auth state change will handle UI
+  } catch (err) {
+    console.error("Error de login:", err);
+    authErrorEl.textContent = `Error: ${
+      err.code === "auth/user-not-found"
+        ? "Usuario no encontrado"
+        : err.code === "auth/wrong-password"
+        ? "Contraseña incorrecta"
+        : err.message
+    }`;
+    authErrorEl.style.display = "block";
+  } finally {
+    btnEntrar.disabled = false;
+    btnEntrar.textContent = "Entrar";
   }
 }
 
-// Bind login button click under module scope
+async function logout() {
+  try {
+    await logoutAdmin();
+  } catch (err) {
+    console.error("Error al salir:", err);
+    alert("Error al salir: " + err.message);
+  }
+}
+
+// Bind buttons
 if (btnEntrar) {
   btnEntrar.addEventListener("click", login);
+}
+if (btnSalir) {
+  btnSalir.addEventListener("click", logout);
 }
 
 /* ===============================
@@ -145,7 +208,6 @@ async function eliminar(id) {
 }
 
 // Expose functions for inline onclick handlers (module scope is not global)
-window.login = login;
 window.editar = editar;
 window.eliminar = eliminar;
 window.cancelarEdicion = cancelarEdicion;

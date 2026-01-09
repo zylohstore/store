@@ -1,7 +1,14 @@
 // Firebase initialization and Firestore helpers
 // Replace the firebaseConfig values with your Firebase project's config.
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -11,8 +18,7 @@ import {
   setDoc,
   doc,
   deleteDoc,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDZ9NpyKG_79nTtToCQj75bXnP5JMj4ZGI",
   authDomain: "zyloh-store.firebaseapp.com",
@@ -25,6 +31,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+
+export async function loginAdmin(email, password) {
+  return await signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function logoutAdmin() {
+  return await signOut(auth);
+}
+
+export function onAuthChange(callback) {
+  return onAuthStateChanged(auth, callback);
+}
 
 const productosCol = collection(db, "productos");
 
