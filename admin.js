@@ -11,6 +11,7 @@ const precioEl = document.getElementById("precio");
 const descripcionEl = document.getElementById("descripcion");
 const imagenesEl = document.getElementById("imagenes");
 const destacadoEl = document.getElementById("destacado");
+const btnEntrar = document.getElementById("btnEntrar");
 
 function login() {
   const pass = document.getElementById("password").value;
@@ -21,6 +22,11 @@ function login() {
   } else {
     alert("Contraseña incorrecta");
   }
+}
+
+// Bind login button click under module scope
+if (btnEntrar) {
+  btnEntrar.addEventListener("click", login);
 }
 
 /* ===============================
