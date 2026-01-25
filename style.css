@@ -78,6 +78,14 @@ body {
   font-size: clamp(14px, 3vw, 18px);
 }
 
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.w-10 {
+  width: 40px;
+}
+
 /* ===============================
    BOTÓN MODO
 ================================ */
@@ -133,7 +141,9 @@ body {
   text-decoration: none;
   color: inherit;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   flex: 1 1 280px;
   max-width: 350px;
   min-width: 260px;
@@ -242,7 +252,9 @@ body {
   color: #fff;
   text-decoration: none;
   border-radius: 40px;
-  transition: background 0.3s ease, transform 0.2s;
+  transition:
+    background 0.3s ease,
+    transform 0.2s;
   font-weight: 600;
 }
 
