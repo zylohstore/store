@@ -1,4 +1,4 @@
-# Zyloh Firebase Migration
+# Hype Steals Firebase Migration
 
 This project now uses Firebase Firestore to store products instead of `localStorage`.
 
