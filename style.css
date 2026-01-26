@@ -268,7 +268,7 @@ body {
   transform: scale(1.05);
 }
 [data-theme="light"] .btn {
-  background: var(--morado);
+  color: var(--negro);
 }
 
 [data-theme="dark"] .btn {
