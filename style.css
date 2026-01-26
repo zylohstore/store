@@ -484,5 +484,5 @@ html[data-theme="dark"] .intro-text strong {
 /* MODO OSCURO */
 html[data-theme="dark"] .intro-card,
 html[data-theme="dark"] .intro-content {
-  background: #141418 !important;
+  background: #0f0f14 !important;
 }
