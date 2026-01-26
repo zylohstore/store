@@ -267,6 +267,13 @@ body {
   background: #2d1443;
   transform: scale(1.05);
 }
+[data-theme="light"] .btn {
+  background: var(--morado);
+}
+
+[data-theme="dark"] .btn {
+  background: #2d1443;
+}
 
 
 /* ===============================
