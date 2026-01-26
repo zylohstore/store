@@ -248,23 +248,25 @@ body {
 .btn {
   display: inline-block;
   padding: 15px 35px;
+
+  /* 👇 VISIBLE SIEMPRE */
   background: var(--morado);
   color: #fff;
-  text-decoration: none;
-  border-radius: 40px;
-  transition: background 0.3s ease, transform 0.2s;
-  font-weight: 600;
 
-  /* CONTORNO */
   border: 2px solid #2d1443;
+  border-radius: 40px;
+
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.3s ease, transform 0.2s;
 }
 
 .btn:hover {
   background: #2d1443;
   transform: scale(1.05);
 }
-
-
 
 
 /* ===============================
