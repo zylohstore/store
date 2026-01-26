@@ -442,3 +442,34 @@ body {
     height: 220px;
   }
 }
+/* ===== TARJETA INTRO - MODO CLARO ===== */
+.intro-card {
+  background: transparent;
+}
+
+.intro-content {
+  background: #ffffff;
+  color: #111111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* TEXTO */
+.intro-text h2,
+.intro-text p,
+.intro-text strong {
+  color: #111111;
+}
+
+/* ===== TARJETA INTRO - MODO OSCURO ===== */
+html[data-theme="dark"] .intro-content {
+  background: #141418; /* negro elegante */
+  color: #f5f5f5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .intro-text h2,
+html[data-theme="dark"] .intro-text p,
+html[data-theme="dark"] .intro-text strong {
+  color: #f5f5f5;
+}
