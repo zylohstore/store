@@ -249,7 +249,7 @@ body {
   display: inline-block;
   padding: 15px 35px;
   background: var(--morado);
-  color: #000000;
+  color: #fff;
   text-decoration: none;
   border-radius: 40px;
   transition:
