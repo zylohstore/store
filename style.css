@@ -248,19 +248,21 @@ body {
 .btn {
   display: inline-block;
   padding: 15px 35px;
-  background: var(--morado);
-  color: #000000;
+  background: transparent;
+  color: var(--morado);
   text-decoration: none;
   border-radius: 40px;
-  transition:
-    background 0.3s ease,
-    transform 0.2s;
+  border: 2px solid var(--morado);
+  transition: all 0.3s ease;
   font-weight: 600;
 }
+
 .btn:hover {
-  background: #2d1443;
+  background: var(--morado);
+  color: #fff;
   transform: scale(1.05);
 }
+
 
 
 /* ===============================
