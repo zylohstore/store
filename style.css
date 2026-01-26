@@ -473,3 +473,16 @@ html[data-theme="dark"] .intro-text p,
 html[data-theme="dark"] .intro-text strong {
   color: #f5f5f5;
 }
+ /* ===== FORZAR CAMBIO DE FONDO EN INTRO CARD ===== */
+
+/* MODO CLARO */
+.intro-card,
+.intro-content {
+  background: #ffffff;
+}
+
+/* MODO OSCURO */
+html[data-theme="dark"] .intro-card,
+html[data-theme="dark"] .intro-content {
+  background: #141418 !important;
+}
