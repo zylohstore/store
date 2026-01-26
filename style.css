@@ -257,7 +257,10 @@ body {
     transform 0.2s;
   font-weight: 600;
 }
-
+.btn:hover {
+  background: #2d1443;
+  transform: scale(1.05);
+}
 
 
 /* ===============================
