@@ -248,20 +248,22 @@ body {
 .btn {
   display: inline-block;
   padding: 15px 35px;
-  background: transparent;
-  color: var(--morado);
+  background: var(--morado);
+  color: #fff;
   text-decoration: none;
   border-radius: 40px;
-  border: 2px solid var(--morado);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s;
   font-weight: 600;
+
+  /* CONTORNO */
+  border: 2px solid #2d1443;
 }
 
 .btn:hover {
-  background: var(--morado);
-  color: #fff;
+  background: #2d1443;
   transform: scale(1.05);
 }
+
 
 
 
