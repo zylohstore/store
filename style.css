@@ -250,10 +250,10 @@ body {
   padding: 15px 35px;
 
   /* 👇 VISIBLE SIEMPRE */
-  background: var(--morado);
+  background: var(--blanco);
   color: #fff;
 
-  border: 2px solid #fff;
+  border: 2px solid #2d1443;
   border-radius: 40px;
 
   text-decoration: none;
